@@ -17,7 +17,7 @@ script:
   - cd gh-pages
   - git clone --depth=1 --branch=gh-pages_test https://github.com/w3c/aria-practices.git
   - cd aria-practices
-  - curl https://labs.w3.org/spec-generator/?type=respec"&"url=https://raw.githubusercontent.com/w3c/aria-practices/master/aria-practices.html -o index.html
+  - curl https://labs.w3.org/spec-generator/?type=respec"&"url=https://raw.githubusercontent.com/w3c/aria-practices/master/aria-practices.html -o index.html -f
 
 after_script:
   - git add .
