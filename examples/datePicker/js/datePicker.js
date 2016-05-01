@@ -37,26 +37,35 @@ var DatePicker = (function() {
   };
 
   var weekBack = function() {
-    var previousWeek = currentWeek.previousElementSibling;
-    var previousWeekDay = previousWeek.childNodes.item(currentWeekDayIndex);
+    var previousWeekDay = currentWeek.
+      previousElementSibling.
+      childNodes.
+      item(dayWeekIndex);
 
-    changeDay(previousWeekDay);
-
-    currentWeek = previousWeek;
+    changeWeek(previousWeekDay);
   };
 
   var weekForward = function() {
-    var nextWeek = currentWeek.nextElementSibling;
-    var nextWeekDay = nextWeek.childNodes.item(currentWeekDayIndex);
+    var nextWeekDay = currentWeek.
+      nextElementSibling.
+      childNodes.
+      item(dayWeekIndex);
 
-    changeDay(nextWeekDay);
+    changeWeek(nextWeekDay);
+  };
 
-    currentWeek = nextWeek;
+  var changeWeek = function(targetWeekDay) {
+    changeDay(targetWeekDay);
+    currentWeek = targetWeekDay.parentElement;
   };
 
   var changeDay = function(targetDay) {
     selectedDay.removeAttribute("aria-selected");
     targetDay.setAttribute("aria-selected", true);
+    dayWeekIndex = Array.prototype.indexOf.call(
+        currentWeek.childNodes,
+        targetDay
+        );
     selectedDay = targetDay;
   };
 })();
